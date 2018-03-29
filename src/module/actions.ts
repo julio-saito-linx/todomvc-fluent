@@ -4,7 +4,10 @@ export function redirectToAll ({ router }: Context) {
   router.redirect('/all')
 }
 
-export function changeNewTodoTitle ({ state, props }: Context<{ title: string }>) {
+export function changeNewTodoTitle ({
+  state,
+  props
+}: Context<{ title: string }>) {
   state.newTodoTitle = props.title
 }
 
@@ -23,7 +26,10 @@ export function toggleAllChecked ({ state }: Context) {
   })
 }
 
-export function toggleTodoCompleted ({ state, props }: Context<{ uid: string }>) {
+export function toggleTodoCompleted ({
+  state,
+  props
+}: Context<{ uid: string }>) {
   const todo = state.todos.get(props.uid)
   if (todo) {
     todo.completed = !todo.completed
@@ -56,7 +62,10 @@ export function clearTodoTitle ({ state }: Context) {
   state.newTodoTitle = ''
 }
 
-export function changeTodoTitle ({ state, props }: Context<{ uid: string, title: string }>) {
+export function changeTodoTitle ({
+  state,
+  props
+}: Context<{ uid: string; title: string }>) {
   const todo = state.todos.get(props.uid)
   if (todo) {
     todo.editedTitle = props.title
@@ -79,7 +88,11 @@ export function abortEditingTodo ({ state, props }: Context<{ uid: string }>) {
   }
 }
 
-export function whenEditedTitle ({ state, props, path }: BranchContext<{ true: {}, false: {} }, { uid: string }>) {
+export function whenEditedTitle ({
+  state,
+  props,
+  path
+}: BranchContext<{ true: {}; false: {} }, { uid: string }>) {
   const todo = state.todos.get(props.uid)
   if (todo && todo.editedTitle) {
     return path.true({})
